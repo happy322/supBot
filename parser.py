@@ -69,4 +69,3 @@ class Parser:
 # Gets the full link to the item -> gives the full link to the styled item
     def find_style(self, item_id):
         pass
-        pass
