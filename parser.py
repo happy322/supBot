@@ -24,9 +24,6 @@ class Parser:
     def __init__(self, task, proxy=None):
         self.task = task
         self.proxy = proxy
-        self.itemID = None
-        self.styleID = None
-        self.sizeID = None
 
     # Continues to look for the necessary item
     def monitor(self):
@@ -37,6 +34,7 @@ class Parser:
         stock_url = STOCK_URL
         stock_url += str(random.randint(1, 10000))
         headers = HEADERS
+        item_id = None
 
         if self.proxy is None:
             r = requests.get(stock_url, headers=headers).json()
@@ -64,8 +62,10 @@ class Parser:
                     break
 
             if count == len(self.task.keywords):
-                self.itemID = r['products_and_categories'][self.task.category][i]['id']
+                item_id = r['products_and_categories'][self.task.category][i]['id']
+
+        return item_id
 
 # Gets the full link to the item -> gives the full link to the styled item
-    def find_style(self):
+    def find_style(self, item_id):
         pass
