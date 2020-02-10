@@ -68,4 +68,21 @@ class Parser:
 
 # Gets the full link to the item -> gives the full link to the styled item
     def find_style(self, item_id):
-        pass
+        item_url = f"https://www.supremenewyork.com/shop/{self.task.category}/{item_id}.json"
+        headers = HEADERS
+        style_id = None
+        size_id = None
+
+        if self.proxy is None:
+            r = requests.get(item_url, headers=headers).json()
+        else:
+            proxies = {
+                "http": f"http://{self.proxy}",
+                "https": f"https://{self.proxy}"
+            }
+
+            try:
+                r = requests.get(item_url, headers=headers, proxies=proxies).json()
+            except requests.RequestException:
+                print(f'Proxy {self.proxy} failed while looking product')
+                exit()
