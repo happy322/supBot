@@ -1,4 +1,6 @@
-import requests, time, random
+import random
+import requests
+import time
 from dataclasses import dataclass
 
 STOCK_URL = 'https://www.supremenewyork.com/mobile_stock.json?'
@@ -27,7 +29,12 @@ class Parser:
 
     # Continues to look for the necessary item
     def monitor(self):
-        pass
+        result = self.pars_stock()
+        while result is None:
+            time.sleep(1)
+            result = self.pars_stock()
+
+        return result
 
     # Gets keywords for the item -> gives the full link to the item
     def pars_stock(self):
@@ -66,6 +73,7 @@ class Parser:
 
         return item_id
 
+# Class for getting styleID and sizeID
 # Gets the full link to the item -> gives the full link to the styled item
     def find_style(self, item_id):
         item_url = f"https://www.supremenewyork.com/shop/{self.task.category}/{item_id}.json"
