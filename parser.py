@@ -86,3 +86,33 @@ class Parser:
             except requests.RequestException:
                 print(f'Proxy {self.proxy} failed while looking product')
                 exit()
+
+        all_styles = r['styles']
+
+        for i in range(len(all_styles)):
+            color_found = False
+            size_found = False
+            sold_out = True
+
+            if r['styles'][i]['name'].upper() == self.task.color.upper():
+                style_id = r['styles'][i]['id']
+                color_found = True
+
+                all_sizes = r['styles'][i]['sizes']
+
+                for _ in range(len(all_sizes)):
+                    if r['styles'][i]['sizes'][_]['name'].upper() == self.task.size.upper():
+                        size_id = r['styles'][i]['sizes'][_]['id']
+                        size_found = True
+
+                        stock_level = r['styles'][i]['sizes'][_]['stock_level']
+                        if stock_level == 1:
+                            sold_out = False
+
+                        if color_found and size_found:
+                            if not sold_out:
+                                return style_id, size_id
+                            else:
+                                return style_id, size_id, 'SOLD OUT'
+                        else:
+                            return 'ITEM NOT FOUND'
