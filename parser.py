@@ -3,7 +3,7 @@ import requests
 import time
 from dataclasses import dataclass
 
-STOCK_URL = 'https://www.supremenewyork.com/mobile_stock.json?'
+PRIMARY_URL = 'https://www.supremenewyork.com/'
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) '
                   'Mobile/15E148',
@@ -38,7 +38,7 @@ class Parser:
 
     # Gets keywords for the item -> gives the full link to the item
     def pars_stock(self):
-        stock_url = STOCK_URL
+        stock_url = PRIMARY_URL + 'mobile_stock.json?'
         stock_url += str(random.randint(1, 10000))
         headers = HEADERS
         item_id = None
@@ -47,8 +47,8 @@ class Parser:
             r = requests.get(stock_url, headers=headers).json()
         else:
             proxies = {
-                "http": f"http://{self.proxy}",
-                "https": f"https://{self.proxy}"
+                'http': f'http://{self.proxy}',
+                'https': f'https://{self.proxy}'
             }
 
             try:
@@ -76,7 +76,7 @@ class Parser:
 # Class for getting styleID and sizeID
 # Gets the full link to the item -> gives the full link to the styled item
     def find_style(self, item_id):
-        item_url = f"https://www.supremenewyork.com/shop/{self.task.category}/{item_id}.json"
+        item_url = PRIMARY_URL + f'shop/{self.task.category}/{item_id}.json'
         headers = HEADERS
         style_id = None
         size_id = None
@@ -85,8 +85,8 @@ class Parser:
             r = requests.get(item_url, headers=headers).json()
         else:
             proxies = {
-                "http": f"http://{self.proxy}",
-                "https": f"https://{self.proxy}"
+                'http': f'http://{self.proxy}',
+                'https': f'https://{self.proxy}'
             }
 
             try:
