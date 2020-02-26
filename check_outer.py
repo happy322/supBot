@@ -26,10 +26,25 @@ PRIMARY_URL = 'https://www.supremenewyork.com/'
 
 @dataclass
 class Profile:
-    pass
+    name: str
+    email: str
+    tel: str
+    address: str
+    apt: str
+    zip: str
+    city: str
+    state: str
+    country: str
+    card_number: str
+    exp_month: str
+    exp_year: str
+    cvv: str
 
 
 class CheckOuter:
     def __init__(self, profile, checkout_data):
         self.profile = profile
         self.checkout_data = checkout_data
+
+    def atcCheckout(self):
+        pass

@@ -1,7 +1,7 @@
 import random
 import requests
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 PRIMARY_URL = 'https://www.supremenewyork.com/'
 HEADERS = {
