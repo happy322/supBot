@@ -14,10 +14,12 @@ HEADERS = {
 # Class for task formation
 @dataclass
 class Task:
+    task_name: str
     keywords: list
     category: str
     color: str
     size: str
+    delay: float
 
 
 # Class for getting itemID
@@ -102,7 +104,7 @@ class Parser:
             size_found = False
             sold_out = True
 
-            if r['styles'][i]['name'].upper() == self.task.color.upper():
+            if all_styles[i]['name'].upper() == self.task.color.upper():
                 style_id = r['styles'][i]['id']
                 color_found = True
 
