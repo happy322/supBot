@@ -53,20 +53,20 @@ if __name__ == '__main__':
 
     task = parser.Task(task_name, kw, category, color, size, delay)
 
-    name = 'EGOR SHEVELEV'
-    email = 'technik.rek@gmail.com'
-    tel = '+79087541340'
-    address = 'Sem val'
+    name = ''
+    email = ''
+    tel = ''
+    address = ''
     apt = ''
-    zip_code = '105094'
-    city = 'Moscow'
+    zip_code = ''
+    city = ''
     state = ''
-    country = 'RU'
-    card_number = '5321 3046 3260 2741'
-    exp_mon = '04'
-    exp_year = '2024'
-    cvv = '717'
-    brand = 'master'
+    country = ''
+    card_number = ''
+    exp_mon = ''
+    exp_year = ''
+    cvv = ''
+    brand = ''
 
     profile = check_outer.Profile(name, email, tel, address, apt, zip_code, city, state, country, card_number, exp_mon,
                                   exp_year, cvv, brand)
